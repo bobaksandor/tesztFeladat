@@ -14,23 +14,44 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+    <header>
+        <nav class="bg-gray-200 px-4 py-2">
+            <div class="flex justify-between">
+              <div class="flex items-center space-x-4">
+                <a href="/" class="text-gray-800 font-bold text-lg">Kezdőoldal</a>
+                <ul class="flex space-x-4">
+                  <li><a href="{{route('companies.index')}}" class="text-blue-500 hover:text-blue-700">Cégek</a></li>
+                  
+                </ul>
+              </div>
+              <div class="flex items-center space-x-4">
+                {{-- <a href="" class="text-gray-800 font-bold">Login</a> --}}
+                
+                @guest
+                    <a class="text-gray-800 font-bold" href="{{ route('login') }}">Login</a>
+                    <a href="" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Sign up</a>
+                @else
+                    @auth
+                        <p class="mr-7">Szia, {{ Auth::user() -> name }}!</p>
+                    
+                    @endauth
+                    <a class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    
+                @endguest
+              </div>
+            </div>
+          </nav>
+          
+          
+    </header>
+    <body>
+        {{ $slot }}
     </body>
 </html>

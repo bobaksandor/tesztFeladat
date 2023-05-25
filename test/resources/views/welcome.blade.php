@@ -19,7 +19,7 @@
               <div class="flex items-center space-x-4">
                 <a href="/" class="text-gray-800 font-bold text-lg">Kezdőoldal</a>
                 <ul class="flex space-x-4">
-                  <li><a href="" class="text-blue-500 hover:text-blue-700">Cégek</a></li>
+                  <li><a href="{{route('companies.index')}}" class="text-blue-500 hover:text-blue-700">Cégek</a></li>
                   
                 </ul>
               </div>
