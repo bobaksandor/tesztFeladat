@@ -4,7 +4,7 @@
         <a href="{{ route('companies.create') }}" class="text-blue-500 hover:underline mb-4 text-2xl">Cég hozzáadása</a>
         @foreach ($companies as $c)
             <div class="bg-white rounded-lg shadow p-4 mb-4">
-                <a href="#" class="text-blue-500 hover:underline">
+                <a href="{{ route('companies.show', ['company' => $c->id]) }}" class="text-blue-500 hover:underline">
                     <ul class="list-disc pl-4">
                         <li class="text-lg">{{$c->name}}</li>
                         <li class="text-sm text-gray-600">{{$c->tax_number}}</li>
